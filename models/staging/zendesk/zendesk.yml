@@ -1,0 +1,52 @@
+version: 2
+
+sources:
+  - name: zendesk_one
+    freshness:
+      warn_after:
+        period: hour
+        count: 12
+      error_after:
+        period: days
+        count: 365
+    tables:
+      - name: TICKETS
+      - name: TICKET_AUDITS
+      - name: TICKET_COMMENTS
+
+models:
+  - name: tickets
+    description: A table containing details for zendesk tickets
+
+    columns:
+        - name: GENERATED_TIMESTAMP
+          description: "When the ticket was generated in UTC (eg. 2018-01-01 12:00:00)"
+          tests:
+              - unique
+              - not_null
+
+        - name: ID
+          description: "A unique identifier for a Zendesk ticket"
+          tests:
+              - not_null
+              - unique
+
+        - name: _SDC_BATCHED_AT
+          description: "???"
+          tests:
+              - unique
+
+        - name: _SDC_RECEIVED_AT
+          description: "???"
+          tests:
+              - unique
+
+        - name: _SDC_SEQUENCE
+          description: "???"
+          tests:
+              - unique
+
+        - name: _SDC_TABLE_VERSION
+          description: "???"
+          tests:
+              - unique
