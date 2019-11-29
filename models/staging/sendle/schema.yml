@@ -1,0 +1,24 @@
+version: 2
+
+# Sources make it possible to name and describe your source data tables
+# Check out https://docs.getdbt.com/docs/using-sources
+
+sources:
+  - name: sendle
+    database: DBT_DB  # Tell dbt which database this source is in
+    schema: SENDLE
+    tables:
+      - name: DELIVERY_ORDERS_BARE
+        description: "This is a description of the DELIVERY_ORDERS table :D"
+
+
+# Model description
+models:
+  - name: stg_sendle_testride
+    description: '{{ doc("stg_sendle_testride") }}'
+    columns:
+        - name: GENERATED_TIMESTAMP
+          description: "When the ticket was generated in UTC (eg. 2018-01-01 12:00:00)"
+          # tests:
+          #     - unique
+          #     - not_null

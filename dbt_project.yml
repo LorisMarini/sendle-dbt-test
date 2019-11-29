@@ -127,7 +127,7 @@ models:
         # These settings can be overridden in the individual model files
         # using the `{{ config(...) }}` macro.
         materialized: view
-        enabled: false
+        enabled: true
 
 # seeds:
 #   enabled: true

@@ -1,0 +1,74 @@
+version: 2
+
+# Sources make it possible to name and describe your source data tables
+# Check out https://docs.getdbt.com/docs/using-sources
+
+sources:
+  - name: zendesk
+    database: DBT_DB  # Tell dbt which database this source is in
+    schema: ZENDESK_TEST
+    tables:
+      - name: TICKETS
+        description: "This is a description of the TICKETS table :D"
+        columns:
+            - name: GENERATED_TIMESTAMP
+              description: "When the ticket was generated in UTC (eg. 2018-01-01 12:00:00)"
+              tests:
+                  - unique
+                  - not_null
+            - name: ID
+              description: "A unique identifier for a Zendesk ticket."
+              tests:
+                  - not_null
+                  - unique
+
+            - name: _SDC_BATCHED_AT
+              description: "Stitch private metadata used to sync rows - Please ignore"
+              tests:
+                  - unique
+
+            - name: _SDC_RECEIVED_AT
+              description: "Stitch private metadata used to sync rows - Please ignore"
+              tests:
+                  - unique
+
+            - name: _SDC_SEQUENCE
+              description: "Stitch private metadata used to sync rows - Please ignore"
+              tests:
+                  - unique
+
+            - name: _SDC_TABLE_VERSION
+              description: "Stitch private metadata used to sync rows - Please ignore"
+              tests:
+                  - unique
+
+      - name: TICKET_AUDITS
+        description: "This is a description of the TICKET_AUDITS table :-)"
+
+      - name: TICKET_COMMENTS
+        description: "This is a description of the TICKET_COMMENTS table :-)"
+
+###########################################
+#                 Models
+###########################################
+
+models:
+  # The first simple model
+  - name: stg_zendesk_tickets
+    description: '{{ doc("stg_zendesk_tickets") }}'
+    columns:
+        - name: GENERATED_TIMESTAMP
+          description: "When the ticket was generated in UTC (eg. 2018-01-01 12:00:00)"
+          tests:
+              - unique
+              - not_null
+
+  # The second simple model
+  - name: stg_zendesk_tickets_materialized
+    description:  '{{ doc("stg_zendesk_tickets_mat") }}'
+    columns:
+        - name: GENERATED_TIMESTAMP
+          description: "When the ticket was generated in UTC (eg. 2018-01-01 12:00:00)"
+          tests:
+              - unique
+              - not_null
