@@ -1,4 +1,4 @@
-{% docs stg_sendle_parcel_size %}
+{% docs delivery_orders_parcel_size %}
 
 ### Sendle Parcel Size
 

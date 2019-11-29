@@ -14,11 +14,13 @@ sources:
 
 # Model description
 models:
-  - name: stg_sendle_testride
-    description: '{{ doc("stg_sendle_testride") }}'
+  - name: delivery_orders_parcel_weight
+    description: '{{ doc("delivery_orders_parcel_weight") }}'
     columns:
         - name: GENERATED_TIMESTAMP
           description: "When the ticket was generated in UTC (eg. 2018-01-01 12:00:00)"
-          # tests:
-          #     - unique
-          #     - not_null
+        # tests:
+        #     - unique
+        #     - not_null
+  - name: delivery_orders_parcel_size
+    description: '{{ doc("delivery_orders_parcel_size") }}'
